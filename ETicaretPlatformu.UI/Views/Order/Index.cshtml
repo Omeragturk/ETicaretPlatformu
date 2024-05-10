@@ -1,0 +1,153 @@
+﻿@{
+    ViewData["Title"] = "Siparişler";
+}
+<link href="~/css/order.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+
+
+@if (ViewData["user"] == null)
+{
+    <h4>You need to login to see this page.</h4>
+}
+else
+{
+    List<OrderVm> orderlist = ViewBag.orders;
+
+    if (orderlist.Count == 0)
+    {
+        <h4>You have'nt ordered anything yet!</h4>
+    }
+    else
+    {
+        <div class="main-content">
+            <div class="container mt-7">
+                <!-- Table -->
+                <div class="row">
+
+                    <div class="col">
+                        <div class="card shadow">
+
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Bought Items </th> <!--resimler-->
+                                            <th scope="col">Order No</th>
+                                            <th scope="col">Order Date</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Total Price</th>
+                                            <th scope="col">Order Status</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (OrderVm order in orderlist)
+                                        {
+
+                                            <tr>
+
+                                                <th scope="row">
+
+                                                    <div class="avatar-group">
+
+                                                        @if (order.OrderDetails.Count < 2)
+                                                        {
+                                                            foreach (OrderDetailVm vm in order.OrderDetails)
+                                                            {
+                                                                <a href="#" class="avatar">
+                                                                    <img src="@vm.Product.ImagePath" class="avatar rounded-circle">
+                                                                </a>
+                                                            }
+
+
+                                                        }
+                                                        else
+                                                        {
+
+                                                            for(int i = 0; i < 2; i++)
+                                                            {
+
+                                                                <a href="#" class="avatar  ">
+                                                                    <img src="@order.OrderDetails[i].Product.ImagePath" class="rounded-circle avatar">
+                                                                </a>
+                                                            }
+
+                                                        }
+
+
+
+                                                    </div>
+                                                </th>
+
+
+
+                                                <td>
+
+                                                    <div class="media align-items-center">
+
+                                                        <div class="media-body">
+                                                            <span class="mb-0 text-sm">@order.Id</span>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+
+                                                <td>
+                                                    @order.CreateDate
+                                                </td>
+                                                <td>
+                                                    @{
+                                                        int sumQuantity = 0;
+                                                    }
+                                                    @foreach (OrderDetailVm vm in order.OrderDetails)
+                                                    {
+                                                        sumQuantity += vm.Quantity;
+                                                    }
+                                                    <span>@sumQuantity </span>
+
+                                                </td>
+                                                <td>
+                                                    @{
+                                                        decimal sumPrice = 0;
+                                                    }
+                                                    @foreach (OrderDetailVm vm in order.OrderDetails)
+                                                    {
+                                                        sumPrice += vm.Quantity * vm.Product.Price;
+                                                    }
+                                                    <span> $@sumPrice </span>
+                                                </td>
+
+                                                <td>
+                                                    <span> @order.OrderStatus.ToString() </span>
+                                                </td>
+
+                                                <td class="text-right">
+                                                   
+                                                        <a asp-controller="Order" asp-action="Details" asp-route-id="@order.Id" class="btn btn-sm btn-icon-only text-light" >
+                                                            <i class="fa-solid fa-chevron-down"></i>
+                                                        </a>
+
+                                                </td>
+
+                                            </tr>
+
+                                        }
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+
+
+}
+

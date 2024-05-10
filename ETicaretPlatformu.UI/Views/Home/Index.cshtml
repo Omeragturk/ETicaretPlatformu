@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ETicaretPlatformu.Application.Models.VMs.ProductVMs.ProductVM>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - SB Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="~/sb-admin-2/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    function removeFilter() {
+        document.getElementById("category").value = 0;
+        document.forms[1].submit();
+    }
+    function removePriceFilter() {
+        document.getElementById("minPrice").value = "";
+        document.getElementById("maxPrice").value = "";
+        document.forms[1].submit();
+    }
+
+    $(document).ready(function () {
+        $(document).on('click', '.addToCartBtn', function () {
+            var userName = $('#userName').val();
+            var productId = $(this).closest('form').find('.productId').val();
+
+            $.ajax({
+                url: '@Url.Action("AddProductToCart", "Cart")',
+                method: 'POST',
+                data: { userName: userName, productId: productId },
+                success: function (response) {
+                    $(document).trigger('productAddedToCart');
+                }
+            });
+        });
+    });
+</script>
+
+<body>
+
+
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">Shop in style</h1>
+                <p class="lead fw-normal text-white-50 mb-0">With this shop homepage template</p>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-3">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-2">
+                    <form asp-action="Index" method="get">
+                        <div class="input-group">
+                            <input name="term" class="form-control" placeholder="Search by name" />
+                            <button type="submit" class="btn btn-info">Search</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-5">
+                    <form asp-controller="Home" asp-action="Index" method="get">
+                        <div class="input-group">
+                            <input type="number" id="minPrice" name="minPrice" class="form-control" placeholder="Min Price" />
+                            <input type="number" id="maxPrice" name="maxPrice" class="form-control" placeholder="Max Price" />
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary">Filter by Price</button>
+                                <a href="#" class="btn btn-danger" onclick="removePriceFilter()">Remove Price Filter</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center mt-5">
+                @Html.Partial("_ProductList", Model)
+            </div>
+        </div> 
+    </section> 
+</body>
+
