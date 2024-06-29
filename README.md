@@ -1,3 +1,4 @@
+E-Commerce Application
 Overview
 This is a full-featured e-commerce application developed using ASP.NET Core MVC and Entity Framework Core. It includes functionalities such as product listing, user authentication, shopping cart, and order processing.
 
