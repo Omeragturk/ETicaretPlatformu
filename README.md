@@ -18,7 +18,7 @@ Order Management: Users can place orders and view their order history.
 Admin Dashboard: Admins can manage products, orders, and users.
 ![Ekran görünt![Ekran görüntüsü 2024-06-29 160659](https://github.com/Omeragturk/ETicaretPlatformu/assets/117679724/e43a049f-78be-4f82-ad95-3fd511ac9d1b)
 üsü 2024-06-29 160534](https://github.com/Omeragturk/ETicaretPlatformu/assets/117679724/d930cb15-de29-48ce-a17c-16b700f7c937)
-![Ekran görüntüsü 2024-06-29 160553](https://github.com/Omeragturk/ETicaretPlatformu/assets/117679724/3d33e3d1-8fc0-49ef-a8d5-181c05fbc9dc)
+              ![Ekran görüntüsü 2024-06-29 160553](https://github.com/Omeragturk/ETicaretPlatformu/assets/117679724/3d33e3d1-8fc0-49ef-a8d5-181c05fbc9dc)
 ![Ekran görüntüsü 2024-06-29 161122](https://github.com/Omeragturk/ETicaretPlatformu/assets/117679724/7ba7e0e6-186f-4671-8772-c99a2421165f)
 ![Ekran görüntüsü 2024-06-29 161051](https://github.com/Omeragturk/ETicaretPlatformu/assets/117679724/f4a802a1-1dc2-4955-b679-95d58b5f8743)
 ![Ekran görüntüsü 2024-06-29 160659](https://github.com/Omeragturk/ETicaretPlatformu/assets/117679724/cd2a8b51-e5d0-4ed5-9e9d-612b6b288435)
